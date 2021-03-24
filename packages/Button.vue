@@ -1,7 +1,10 @@
 <template>
     <button class="ls-button" @click="handleClick" :disabled="disabled"
         :class="[`ls-button--${type}`,{'is-plain':plain},{'is-round':round},{'is-circle':circle},{'is-disabled':disabled}]">
-        <span>
+        <i v-if="icon" :class="icon"></i>
+        <!-- $slots.default：插槽没有穿内容不显示 -->
+        <span v-if="$slots.default">
+            <!-- 按钮内容插槽 -->
             <slot></slot>
         </span>
     </button>
@@ -11,36 +14,44 @@
     export default {
         name: 'ls-button',
         props: {
-            type: {
+            type: { //按钮的类型
                 type: String,
                 default: 'default'
             },
-            plain: {
+            plain: { //朴素
                 type: Boolean,
                 default: false
             },
-            round: {
+            round: { //圆角
                 type: Boolean,
                 default: false
             },
-            circle: {
+            circle: { //圆形
                 type: Boolean,
                 default: false
             },
-            disabled: {
+            icon: {
+                type: String,
+                default: ''
+            },
+            disabled: { //禁用
                 type: Boolean,
                 default: false
             }
         },
         methods: {
-            handleClick(e) {
+            handleClick(e) { //点击事件
                 this.$emit('click', e);
             }
+        },
+        created() {
+            //拿到所有插槽
+            // console.log(this.$slots);
         }
     }
 </script>
 
-<style lang="less">
+<style lang="less" scoped>
     .ls-button {
         display: inline-block;
         line-height: 1;
@@ -61,7 +72,7 @@
         -webkit-user-select: none;
         -ms-user-select: none;
         padding: 8px 20px;
-        font-size: 12px;
+        font-size: 13px;
         border-radius: 4px;
     }
 
@@ -164,12 +175,32 @@
     }
 
     .ls-button.is-round {
+        //圆角
         border-radius: 20px;
         padding: 12px 23px;
     }
 
     .ls-button.is-circle {
+        //圆形
         border-radius: 50%;
-        padding: 12px;
+        padding: 8px;
+    }
+
+    .ls-button.is-disabled {
+        //禁用
+        color: rgba(0, 0, 0, .25);
+        background-color: #f5f5f5;
+        border-color: #d9d9d9;
+        text-shadow: none;
+        box-shadow: none;
+        cursor: not-allowed;
+    }
+
+    .ls-button [class*=icon]+span {
+        margin-left: 8px; //找到图标后面的span标签
+    }
+
+    .ls-button i {
+        font-size: 13px;
     }
 </style>
