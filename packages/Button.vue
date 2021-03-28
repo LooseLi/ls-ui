@@ -149,7 +149,7 @@
     }
 
     .ls-button--primary.is-plain {
-        color: #a2a8ad;
+        color: #66b1ff;
         background: #ecf5ff;
         border-color: #b3d8ff;
     }
@@ -172,6 +172,45 @@
         color: #fff;
         background: #67c23a;
         border-color: #67c23a;
+    }
+
+    .ls-button--warning.is-plain {
+        color: #ebb563;
+        background: #fff5e5;
+        border-color: #e9d3b0;
+    }
+
+    .ls-button--warning.is-plain:hover,
+    .ls-button--warning.is-plain:focus {
+        color: #fff;
+        background: #ebb563;
+        border-color: #ebb563;
+    }
+
+    .ls-button--info.is-plain {
+        color: #909399;
+        background: #dddddd;
+        border-color: #b6bac2;
+    }
+
+    .ls-button--info.is-plain:hover,
+    .ls-button--info.is-plain:focus {
+        color: #fff;
+        background: #909399;
+        border-color: #909399;
+    }
+
+    .ls-button--danger.is-plain {
+        color: #f56c6c;
+        background: #ffe1e1;
+        border-color: #d89797;
+    }
+
+    .ls-button--danger.is-plain:hover,
+    .ls-button--danger.is-plain:focus {
+        color: #fff;
+        background: #f56c6c;
+        border-color: #f56c6c;
     }
 
     .ls-button.is-round {

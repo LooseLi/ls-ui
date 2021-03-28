@@ -4,15 +4,13 @@
         <div class="box">
             <div class="sider">
                 <ul>
-                    <li>按钮</li>
-                    <li>对话框</li>
-                    <li>表单</li>
-                    <li>输入框</li>
-                    <li>单选框</li>
-                    <li>开关</li>
+                    <li v-for="(item,index) in list" :key="item.key" @click="menuClick(item,index)"
+                        :class="{menuSelected:current === index}">{{item.title}}</li>
                 </ul>
             </div>
-            <div class="main"></div>
+            <div class="main">
+                <router-view></router-view>
+            </div>
         </div>
     </div>
 </template>
@@ -21,9 +19,57 @@
     export default {
         name: "layout",
         data() {
-            return {}
+            return {
+                list: [{
+                        key: 0,
+                        title: "按钮",
+                        path: "/button"
+                    },
+                    {
+                        key: 1,
+                        title: "对话框",
+                        path: "/dialog"
+                    },
+                    {
+                        key: 2,
+                        title: "表单",
+                        path: "/form"
+                    },
+                    {
+                        key: 3,
+                        title: "输入框",
+                        path: "/input"
+                    },
+                    {
+                        key: 4,
+                        title: "单选框",
+                        path: "/radio"
+                    },
+                    {
+                        key: 5,
+                        title: "开关",
+                        path: "/switch"
+                    }
+                ],
+                current: 0, //当前选中的菜单项
+            }
         },
-        methods: {}
+        methods: {
+            menuClick(val, index) { //点击左侧菜单
+                if (this.$router.history.current.path === val.path) return;
+                this.current = index;
+                this.$router.push({
+                    path: val.path
+                });
+            }
+        },
+        created() {
+            this.list.forEach(item => {
+                if (item.path === this.$router.history.current.path) {
+                    this.current = item.key;
+                }
+            });
+        }
     }
 </script>
 
@@ -58,6 +104,15 @@
                         line-height: 40px;
                         padding-left: 20px;
                         cursor: pointer;
+                    }
+
+                    li:hover {
+                        color: #409EFF;
+                    }
+
+                    .menuSelected {
+                        color: #409EFF;
+                        background-color: #e6f7ff;
                     }
                 }
             }
