@@ -6,6 +6,9 @@
                     <slot name="title">
                         <span class="ls-dialog_title">{{title}}</span>
                     </slot>
+                    <button class="ls-dialog-icon" @click="handleClose">
+                        <i :class="['ls-dialog-icon-close','iconclose-circle']"></i>
+                    </button>
                 </div>
                 <div class="ls-body">
                     <!-- 默认插槽 -->
@@ -80,6 +83,22 @@
                     font-size: 18px;
                     color: #303133;
                 }
+
+                .ls-dialog-icon {
+                    position: absolute;
+                    top: 20px;
+                    right: 20px;
+                    padding: 0;
+                    background: transparent;
+                    border: none;
+                    outline: none;
+                    cursor: pointer;
+                    font-size: 16px;
+
+                    .ls-dialog-icon-close {
+                        color: #909399;
+                    }
+                }
             }
 
             .ls-body {
@@ -95,7 +114,7 @@
                 box-sizing: border-box;
 
                 .ls-button:first-child {
-                    margin-right: 20px;
+                    margin-right: 15px;
                 }
             }
         }
