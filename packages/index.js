@@ -8,6 +8,7 @@ import Radio from './Radio.vue'
 import RadioGroup from './RadioGroup.vue'
 import Form from './Form.vue'
 import FormItem from './FormItem.vue'
+import './icons/iconfont.css'
 const components = [
     Button,
     Dialog,
